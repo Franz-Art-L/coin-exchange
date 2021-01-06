@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import styled from'styled-components';
 
 const CoinRow = styled.td`
-    border: 10px solid #cccccc;
-    width: 30vh;
+    border: 1px solid #cccccc;
+    width: 25vh;
 `;
 
 export default class Coin extends Component {
