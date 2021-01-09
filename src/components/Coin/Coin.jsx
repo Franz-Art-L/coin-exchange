@@ -8,39 +8,12 @@ const CoinRow = styled.td`
 `;
 
 export default class Coin extends Component {
-    constructor(props) {
-        super(props);
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    /*
-    componentDidMount() {
-        const callback = () => {
-            // set the state to a new random value
-            const randomPercentage = 0.995 + Math.random() * 0.01;
-            
-            this.setState( function(oldState) {
-                return {
-                    price: oldState.price * randomPercentage
-                };
-            });
-        }
-        setInterval( callback, 1000 );
-    }
-    */
-   handleClick(event) {
+   handleClick= (event) => {
         // Prevent the default action of submitting the form
         event.preventDefault();
 
         this.props.handleRefresh(this.props.ticker);
-/*        
-        const randomPercentage = 0.995 + Math.random() * 0.01;
-        this.setState( function(oldState) {
-            return {
-                price: oldState.price * randomPercentage
-            };
-        });
-*/
+
     }
     render( ) {
         return (
@@ -48,6 +21,7 @@ export default class Coin extends Component {
                 <CoinRow>{this.props.name}</CoinRow>
                 <CoinRow>{this.props.ticker}</CoinRow>
                 <CoinRow>${this.props.price}</CoinRow>
+                {this.props.showBalance ? <CoinRow>{this.props.balance} </CoinRow> : null}
                 <CoinRow>
                     <form action ="#" method="POST">
                         <button onClick={this.handleClick}>Refresh</button>
