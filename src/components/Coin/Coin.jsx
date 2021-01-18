@@ -4,30 +4,62 @@ import styled from'styled-components';
 
 const CoinRow = styled.td`
     border: 1px solid #cccccc;
-    width: 25vh;
+    width: 20vw;
 `;
 
-export default function Coin (props) {
+const CoinRowControls = styled(CoinRow)`
+    width: 40vw;
+`;
+
+const Button = styled.button`
+    font-size: 12px;
+    width: 64px;
+    margin: 5px 5px 0;
+`;
+
+const CoinRowName = styled(CoinRow)`
+    width: 24vw;
+`;
+
+export default function Coin(props) {
    
-   const handleClick= (event) => {
+   const handleRefresh = (event) => {
         // Prevent the default action of submitting the form
         event.preventDefault();
+        props.handleRefresh(props.tickerId);
+    }
 
-        props.handleRefresh(props.ticker);
+    const handleBuy= (event) => {
+        // Prevent the default action of submitting the form
+        event.preventDefault();
+        props.handleTransaction(true, props.tickerId);
+    }
 
+    const handleSell= (event) => {
+        // Prevent the default action of submitting the form
+        event.preventDefault();
+        props.handleTransaction(false, props.tickerId);
     }
     
     return (
         <tr>
-            <CoinRow>{props.name}</CoinRow>
+            <CoinRowName>{props.name}</CoinRowName>
             <CoinRow>{props.ticker}</CoinRow>
             <CoinRow>${props.price}</CoinRow>
-            {props.showBalance ? <CoinRow>{props.balance} </CoinRow> : null}
-            <CoinRow>
+           <CoinRow>{props.showBalance ? props.balance : '-'} </CoinRow>
+            <CoinRowControls>
                 <form action ="#" method="POST">
-                    <button onClick={handleClick}>Refresh</button>
+                    <Button className="btn btn-info"onClick={handleRefresh}>
+                        Refresh
+                    </Button>
+                    <Button className="btn btn-warning"onClick={handleBuy}>
+                        Buy
+                    </Button>
+                    <Button className="btn btn-danger"onClick={handleSell}>
+                        Sell
+                    </Button>
                 </form>
-            </CoinRow>
+            </CoinRowControls>
         </tr>
     );
     
