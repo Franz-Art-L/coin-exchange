@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import CoinList from './components/CoinList/CoinList';
-import AccountBalance from './components/AccountBalance/AccountBalance'
 import ExchangeHeader from './components/ExchangeHeader/ExchangeHeader'
 import styled from 'styled-components';
 import axios from 'axios';
@@ -62,7 +61,7 @@ const handleTransaction = (isBuy, valueChangeId) => {
   var balanceChange = isBuy ? 1 : -1;
   const newCoinData = coinData.map( function(values) {
     let newValues = {...values};
-    if ( valueChangeId == values.key) {
+    if ( valueChangeId === values.key) {
       newValues.balance += balanceChange;
       setBalance( oldBalance => oldBalance - balanceChange * newValues.price);
     }
@@ -88,11 +87,7 @@ const handleRefresh = async (valueChangeId) => {
   return (
     <Div className="App">
       <ExchangeHeader />        
-      <AccountBalance 
-        amount={balance}
-        showBalance={showBalance}
-        handleBrrrr={handleBrrrr}
-        handleBalanceVisibilityChange={handleBalanceVisibilityChange} />
+      
       <CoinList 
       coinData={coinData} 
       showBalance={showBalance}

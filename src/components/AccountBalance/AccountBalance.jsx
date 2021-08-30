@@ -30,32 +30,6 @@ var formatter = Intl.NumberFormat('en-US', {
     currency: 'USD'
 });
 
-export default function AccountBalance (props) {
-    
-    const buttonText = props.showBalance ? 'Hide Balance' : 'Show Balance';
-    let content = '\u00A0';
-    if(props.showBalance) {
-        content = <>{ formatter.format(props.amount) }</>
-    }
-    const buttonClass = 'btn ' + (props.showBalance ? 'btn-warning' : 'btn-info');
-    return (
-        <>
-        <Balance>{content}</Balance>{}
-        <Section>
-                <BalanceToggleButton 
-                    onClick={props.handleBalanceVisibilityChange}
-                    className={buttonClass}>                    
-                    {buttonText}
-                    </BalanceToggleButton>
-                    <Button className="btn btn-success"
-                    onClick={props.handleBrrrr}>    
-                    <i className="fas fa-helicopter"></i>
-                    </Button>
-        </Section>
-        </>
-    ); 
-}
 
-AccountBalance.propTypes = {
-   amount: PropTypes.number.isRequired
-}
+    
+    
